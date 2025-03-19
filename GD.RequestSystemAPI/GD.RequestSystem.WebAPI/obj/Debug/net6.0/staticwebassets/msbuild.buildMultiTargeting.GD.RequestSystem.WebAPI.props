@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GD.RequestSystem.WebAPI.props" />
+</Project>
