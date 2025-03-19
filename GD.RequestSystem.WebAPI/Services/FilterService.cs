@@ -14,8 +14,7 @@ namespace GD.RequestSystem.WebAPI.Services
 
         Task<IList<string>> GetStatus();
         Task<ResultModel<List<PetitionStatus>>> GetAllStatus();
-        Task<ResultModel<List<Petition>>> GetPetitionByUserId(int userID);
-        Task<ResultModel<List<Petition>>> GetAllPetitionByUserAsigned(int userID);
+       
     }
     public class FilterService : IFilterService
     {
@@ -43,14 +42,5 @@ namespace GD.RequestSystem.WebAPI.Services
             throw new NotImplementedException();
         }
 
-        public Task<ResultModel<List<Petition>>> GetPetitionByUserId(int userID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResultModel<List<Petition>>> GetAllPetitionByUserAsigned(int userID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

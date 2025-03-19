@@ -33,8 +33,6 @@ namespace GD.RequestSystem.DAL.EF
             modelBuilder.Entity<Petition>().ToTable("tblPetition");
             modelBuilder.Entity<ResultPetition>().ToTable("tblResultPetition");
             modelBuilder.Entity<PetitionStatus>().ToTable("tblPetitionStatus");
-
-
         }
 
     }

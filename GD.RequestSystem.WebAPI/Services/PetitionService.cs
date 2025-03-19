@@ -13,11 +13,11 @@ namespace GD.RequestSystem.WebAPI.Services
     public interface IPetitionService
     {
         Task<ResultModel<Petition>> CreatePetition(Petition petition, int userID);
-        Task<ResultModel<List<PetitionResponse>>> GetAllPetitions();
+        Task<ResultModel<List<PetitionResponse>>> GetAllPetitions(int page, int pageSize);
         Task<ResultModel<PetitionResponse>> GetPetitionbyID(int petitionID);
-        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statiID);
-        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int areaID);
-        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID(int userID);
+        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statiID, int page, int pageSize);
+        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int areaID, int page, int pageSize);
+        Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID(int userID, int page, int pageSize);
 
     }
     public class PetitionService : IPetitionService
@@ -76,17 +76,23 @@ namespace GD.RequestSystem.WebAPI.Services
 
 
         }
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitions()
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitions(int page, int pageSize)
         {
             using var connection = _context.Database.GetDbConnection();
             var query = @"SELECT p.PetitionID,p.PetitionTitle,p.userCreateID,
             p.MessagePetition,p.DateTime,p.PetitionStatus,p.urlDocumentPetition,
             p.AreaID,p.userAsignedID,o.ResultPetitionID, o.PetitionId,o.MessageResponce,
             o.userResponceID,o.DateTimeResponse,o.urlDocumentResponse 
-            FROM tblPetition p LEFT JOIN tblResultPetition o on p.PetitionID = o.PetitionId";
+            FROM tblPetition p LEFT JOIN tblResultPetition o on p.PetitionID = o.PetitionId
+            ORDER BY p.DateTime DESC, p.PetitionID DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             using var command = connection.CreateCommand();
             command.CommandText = query;
+
+            //pagination values
+            var offset = (page - 1) * pageSize;
+            command.Parameters.Add(new SqlParameter("@Offset", offset));
+            command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
 
             await connection.OpenAsync();
             var result = await command.ExecuteReaderAsync();
@@ -216,7 +222,7 @@ namespace GD.RequestSystem.WebAPI.Services
             }
         }
 
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statusID)
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statusID, int page, int pageSize)
         {
             using var connection = _context.Database.GetDbConnection();
             var query = @"SELECT  p.PetitionID,p.PetitionTitle,p.userCreateID,p.MessagePetition,
@@ -225,11 +231,17 @@ namespace GD.RequestSystem.WebAPI.Services
                         o.urlDocumentResponse
 			            FROM tblPetition p
 			            LEFT JOIN tblResultPetition o ON p.PetitionID = o.PetitionID
-			            WHERE p.PetitionStatus = @PetitionStatus";
+			            WHERE p.PetitionStatus = @PetitionStatus
+                        ORDER BY p.DateTime DESC, p.PetitionID DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             using var command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.Add(new SqlParameter("@PetitionStatus", statusID));
+
+            //pagination values
+            var offset = (page - 1) * pageSize;
+            command.Parameters.Add(new SqlParameter("@Offset", offset));
+            command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
 
             await connection.OpenAsync();
             var result = await command.ExecuteReaderAsync();
@@ -289,7 +301,7 @@ namespace GD.RequestSystem.WebAPI.Services
             }
         }
 
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int areaID)
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int areaID, int page, int pageSize)
         {
             using var connection = _context.Database.GetDbConnection();
             var query = @"SELECT p.PetitionID,p.PetitionTitle,p.userCreateID,p.MessagePetition,
@@ -298,10 +310,15 @@ namespace GD.RequestSystem.WebAPI.Services
                         o.userResponceID,o.DateTimeResponse,o.urlDocumentResponse
 			            FROM tblPetition p
                         LEFT JOIN tblResultPetition o ON p.PetitionID = o.PetitionID
-                        WHERE p.AreaID = @AreaID";
+                        WHERE p.AreaID = @AreaID
+                         ORDER BY p.DateTime DESC, p.PetitionID DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
             using var command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.Add(new SqlParameter("@AreaID", areaID));
+            //pagination values
+            var offset = (page - 1) * pageSize;
+            command.Parameters.Add(new SqlParameter("@Offset", offset));
+            command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
 
             await connection.OpenAsync();
             var result = await command.ExecuteReaderAsync();
@@ -360,7 +377,7 @@ namespace GD.RequestSystem.WebAPI.Services
                 };
             }
         }
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID(int userID)
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID(int userID, int page, int pageSize)
         {
             using var connection = _context.Database.GetDbConnection();
             var query = @"SELECT  p.PetitionID,p.PetitionTitle,p.userCreateID,p.MessagePetition,
@@ -369,11 +386,17 @@ namespace GD.RequestSystem.WebAPI.Services
                         o.urlDocumentResponse
 			            FROM tblPetition p
 			            LEFT JOIN tblResultPetition o ON p.PetitionID = o.PetitionID
-			            WHERE p.userCreateID = @userCreateID";
+			            WHERE p.userCreateID = @userCreateID
+                        ORDER BY p.DateTime DESC, p.PetitionID DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             using var command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.Add(new SqlParameter("@userCreateID", userID));
+
+            //pagination values
+            var offset = (page - 1) * pageSize;
+            command.Parameters.Add(new SqlParameter("@Offset", offset));
+            command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
 
             await connection.OpenAsync();
             var result = await command.ExecuteReaderAsync();

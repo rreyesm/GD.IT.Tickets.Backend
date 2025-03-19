@@ -69,12 +69,12 @@ namespace GD.RequestSystem.WebAPI.Controllers
 
         }
         [HttpGet]
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitions()
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitions([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
                 var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                var result = await petitionService.GetAllPetitions();
+                var result = await petitionService.GetAllPetitions(page, pageSize);
                 if (result.Response == false)
                 {
                     return new ResultModel<List<PetitionResponse>>
@@ -142,12 +142,12 @@ namespace GD.RequestSystem.WebAPI.Controllers
             }
         }
         [HttpGet("{statusID}")]
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statusID)
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByStatus(int statusID, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
                 var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                var result = await petitionService.GetAllPetitionByStatus(statusID);
+                var result = await petitionService.GetAllPetitionByStatus(statusID, page, pageSize);
                 if (result.Response == false)
                 {
                     return new ResultModel<List<PetitionResponse>>
@@ -178,12 +178,12 @@ namespace GD.RequestSystem.WebAPI.Controllers
             }
         }
         [HttpGet("{AreaID}")]
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int AreaID)
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByArea(int AreaID, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
                 var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                var result = await petitionService.GetAllPetitionByArea(AreaID);
+                var result = await petitionService.GetAllPetitionByArea(AreaID, page, pageSize);
                 if (result.Response == false)
                 {
                     return new ResultModel<List<PetitionResponse>>
@@ -214,12 +214,12 @@ namespace GD.RequestSystem.WebAPI.Controllers
             }
         }
         [HttpGet]
-        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID()
+        public async Task<ResultModel<List<PetitionResponse>>> GetAllPetitionByUserID([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
                 var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                var result = await petitionService.GetAllPetitionByUserID(userID);
+                var result = await petitionService.GetAllPetitionByUserID(userID,page,pageSize);
                 if (result.Response == false)
                 {
                     return new ResultModel<List<PetitionResponse>>
