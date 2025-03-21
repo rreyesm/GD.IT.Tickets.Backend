@@ -57,13 +57,13 @@ namespace GD.RequestSystem.WebAPI.Controllers
                     Data = result.Data
                 });
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest(new ResultModel<string>
                 {
                     Response = false,
                     Data = null,
-                    Message = "Token invalido"
+                    Message = ex.Message
                 });
             }
 

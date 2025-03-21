@@ -34,23 +34,23 @@ namespace GD.RequestSystem.WebAPI.Services
 
             using var connection = _context.Database.GetDbConnection();
             var query = @"INSERT INTO tblPetition
-                (PetitionTitle,userCreateID, message, DateTime, PetitionStatus,urlDocument, 
-                AreaID, CreaterID,CreateDate,Status)
-                VALUES (@PetitionTitle, @UserCreateID, @Message, @DateTime, @PetitionStatus, 
-                @urlDocument,@AreaID, @CreaterID, @CreateDate, @Status)";
+                (PetitionTitle,MessagePetition,DateTime,PetitionStatus,userCreateID,AreaID,
+                 CreaterID,CreateDate,urlDocumentPetition,Status)
+                VALUES (@PetitionTitle,@MessagePetition,@DateTime,@PetitionStatus, @UserCreateID,@AreaID,
+                @CreaterID,@CreateDate,@urlDocumentPetition, @Status)";
 
             using var command = connection.CreateCommand();
             command.CommandText = query;
 
             command.Parameters.Add(new SqlParameter("@PetitionTitle", petition.PetitionTitle));
-            command.Parameters.Add(new SqlParameter("@UserCreateID", userID));
-            command.Parameters.Add(new SqlParameter("@Message", petition.MessagePetition));
+            command.Parameters.Add(new SqlParameter("@MessagePetition", petition.MessagePetition));
             command.Parameters.Add(new SqlParameter("@DateTime", petition.DateTime));
             command.Parameters.Add(new SqlParameter("@PetitionStatus", petition.PetitionStatus));
+            command.Parameters.Add(new SqlParameter("@UserCreateID", userID));
             command.Parameters.Add(new SqlParameter("@AreaID", petition.AreaID));
-            command.Parameters.Add(new SqlParameter("@urlDocument", petition.urlDocumentPetition));
             command.Parameters.Add(new SqlParameter("@CreaterID", userID));
             command.Parameters.Add(new SqlParameter("@CreateDate", petition.CreateDate));
+            command.Parameters.Add(new SqlParameter("@urlDocumentPetition", petition.urlDocumentPetition));
             command.Parameters.Add(new SqlParameter("@Status", petition.Status));
 
             await connection.OpenAsync();
