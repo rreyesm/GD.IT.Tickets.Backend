@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
-using GD.QualityAssurance.Entities.ModelsAdmin;
-using GD.QualityAssurance.Entities.Shared;
+using GD.RequestSystem.Entities.ModelsAdmin;
+using GD.RequestSystem.Entities.Shared;
 using GD.RequestSystem.Entities;
 using GD.RequestSystem.Entities.Catalogs;
 using GD.RequestSystem.WebAPI.Services;

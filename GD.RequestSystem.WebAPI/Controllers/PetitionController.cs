@@ -1,4 +1,4 @@
-﻿using GD.QualityAssurance.Entities.Shared;
+﻿using GD.RequestSystem.Entities.Shared;
 using GD.RequestSystem.Entities;
 using System.Security.Claims;
 using GD.RequestSystem.WebAPI.Services;

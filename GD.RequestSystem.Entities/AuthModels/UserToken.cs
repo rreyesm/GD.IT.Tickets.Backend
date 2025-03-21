@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GD.QualityAssurance.Entities.AuthModels
+namespace GD.RequestSystem.Entities.AuthModels
 {
   public class UserToken
   {

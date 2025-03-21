@@ -5,7 +5,7 @@
 //using System.Text.Json.Serialization;
 //using System.Threading.Tasks;
 
-//namespace GD.QualityAssurance.Entities.Shared
+//namespace GD.RequestSystem.Entities.Shared
 //{
 //    public class ResultModel<T>
 //    {
@@ -27,7 +27,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace GD.QualityAssurance.Entities.Shared
+namespace GD.RequestSystem.Entities.Shared
 {
   public class ResultModel<T>
   {

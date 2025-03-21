@@ -1,4 +1,4 @@
-﻿using GD.QualityAssurance.Entities.Shared;
+﻿using GD.RequestSystem.Entities.Shared;
 using GD.RequestSystem.Entities;
 using System.Security.Claims;
 using GD.RequestSystem.WebAPI.Services;
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using GD.QualityAssurance.Entities.ModelsAdmin;
+using GD.RequestSystem.Entities.ModelsAdmin;
 
 namespace GD.RequestSystem.WebAPI.Controllers
 {

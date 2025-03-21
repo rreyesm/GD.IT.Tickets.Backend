@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GD.QualityAssurance.Entities.ModelsAdmin
+namespace GD.RequestSystem.Entities.ModelsAdmin
 {
     public class User : GeneralEntity
     {

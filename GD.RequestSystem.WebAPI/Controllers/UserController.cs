@@ -1,12 +1,12 @@
-using GD.QualityAssurance.Entities.AuthModels;
-using GD.QualityAssurance.Entities.ModelsAdmin;
-using GD.QualityAssurance.Entities.Shared;
-using GD.QualityAssurance.WebAPI.Services;
+using GD.RequestSystem.Entities.AuthModels;
+using GD.RequestSystem.Entities.ModelsAdmin;
+using GD.RequestSystem.Entities.Shared;
+using GD.RequestSystem.WebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GD.QualityAssurance.WebAPI.Controllers
+namespace GD.RequestSystem.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

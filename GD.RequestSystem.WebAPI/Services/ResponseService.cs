@@ -1,5 +1,5 @@
-﻿using GD.QualityAssurance.Entities.AuthModels;
-using GD.QualityAssurance.Entities.Shared;
+﻿using GD.RequestSystem.Entities.AuthModels;
+using GD.RequestSystem.Entities.Shared;
 using GD.RequestSystem.DAL.EF;
 using GD.RequestSystem.Entities;
 using Microsoft.Data.SqlClient;

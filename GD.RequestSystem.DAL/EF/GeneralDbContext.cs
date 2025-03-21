@@ -1,4 +1,4 @@
-﻿using GD.QualityAssurance.Entities.ModelsAdmin;
+﻿using GD.RequestSystem.Entities.ModelsAdmin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GD.QualityAssurance.DAL.EF
+namespace GD.RequestSystem.DAL.EF
 {
     public class GeneralDbContext : DbContext
     {

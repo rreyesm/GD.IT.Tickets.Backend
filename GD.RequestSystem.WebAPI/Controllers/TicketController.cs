@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Security.Claims;
-using GD.QualityAssurance.Entities.Shared;
+using GD.RequestSystem.Entities.Shared;
 using GD.RequestSystem.Entities;
 using GD.RequestSystem.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GD.RequestSystem.DAL\GD.RequestSystem.DAL.csproj" />
+    <ProjectReference Include="..\GD.RequestSystem.Entities\GD.RequestSystem.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 using System.Text;
 using System.Text.Json;
-using GD.QualityAssurance.DAL.EF;
-using GD.QualityAssurance.Entities.AuthModels;
-using GD.QualityAssurance.Entities.Shared;
-using GD.QualityAssurance.WebAPI.Services;
+using GD.RequestSystem.DAL.EF;
+using GD.RequestSystem.Entities.AuthModels;
+using GD.RequestSystem.Entities.Shared;
+using GD.RequestSystem.WebAPI.Services;
 using GD.RequestSystem.DAL.EF; 
 using GD.RequestSystem.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
